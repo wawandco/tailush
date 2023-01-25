@@ -92,13 +92,13 @@ func (f form) CheckboxTag(opts tags.Options) *tags.Tag {
 
 	if opts["tag_only"] == true {
 		delete(opts, "label")
-		ct := f.InputTag(opts)
+		ct := tags.New("input", opts)
 		ct.Checked = template.HTMLEscaper(value) == template.HTMLEscaper(checked)
 		return ct
 	}
 
 	tag := tags.New("label", tags.Options{})
-	ct := f.InputTag(opts)
+	ct := tags.New("input", opts)
 	ct.Checked = template.HTMLEscaper(value) == template.HTMLEscaper(checked)
 	tag.Append(ct)
 
@@ -115,6 +115,7 @@ func (f form) CheckboxTag(opts tags.Options) *tags.Tag {
 		delete(opts, "label")
 		tag.Append(" " + label)
 	}
+
 	return tag
 }
 
@@ -147,12 +148,12 @@ func (f form) RadioButtonTag(opts tags.Options) *tags.Tag {
 	delete(opts, "checked")
 
 	if opts["tag_only"] == true {
-		ct := f.InputTag(opts)
+		ct := tags.New("input", opts)
 		ct.Checked = template.HTMLEscaper(value) == template.HTMLEscaper(checked)
 		return ct
 	}
 
-	ct := f.InputTag(opts)
+	ct := tags.New("input", opts)
 	ct.Checked = template.HTMLEscaper(value) == template.HTMLEscaper(checked)
 	labelOptions := tags.Options{
 		"body": strings.Join([]string{ct.String(), label}, " "),
