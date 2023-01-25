@@ -1,4 +1,4 @@
-module tailush
+module github.com/wawandco/tailush
 
 go 1.19
 
