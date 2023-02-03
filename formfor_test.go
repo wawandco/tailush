@@ -18,8 +18,6 @@ func TestFormForInputTag(t *testing.T) {
 			"type": "hidden",
 		})
 
-		fmt.Println(string(it.HTML()))
-
 		if strings.Contains(string(it.HTML()), `<label class="block text-sm font-medium text-gray-700 mb-1">Name</label>`) {
 			t.Fatalf("form shouldn't contain label")
 		}
