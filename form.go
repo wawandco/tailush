@@ -18,6 +18,12 @@ type form struct {
 	labelClass          string
 	inputClass          string
 	selectClass         string
+	checkboxClass       string
+	radioClass          string
+	fileClass           string
+	textAreaClass       string
+	dateInputClass      string
+	errorClass          string
 }
 
 // SetAuthenticityToken allows to set the authenticity token
@@ -63,7 +69,13 @@ func (f form) InputTag(opts tags.Options) *tags.Tag {
 			opts["type"] = "text"
 		}
 
-		opts["class"] = f.inputClass
+		// Set the class for the input
+		if cl := opts["class"]; cl == nil {
+			opts["class"] = f.inputClass
+		} else {
+			opts["class"] = fmt.Sprintf("%v %v", f.inputClass, cl)
+		}
+
 		delete(opts, "tag_only")
 
 		return tags.New("input", opts)
@@ -73,6 +85,13 @@ func (f form) InputTag(opts tags.Options) *tags.Tag {
 // CheckboxTag builds a tailwindcss checkbox with passed options
 func (f form) CheckboxTag(opts tags.Options) *tags.Tag {
 	opts["type"] = "checkbox"
+
+	// Set the class for the checkbox
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.checkboxClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.checkboxClass, cl)
+	}
 
 	value := opts["value"]
 	delete(opts, "value")
@@ -125,12 +144,26 @@ func (f form) FileTag(opts tags.Options) *tags.Tag {
 	f.Options["enctype"] = "multipart/form-data"
 	opts["type"] = "file"
 
+	// Set the class for the file input
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.fileClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.fileClass, cl)
+	}
+
 	return tags.New("input", opts)
 }
 
 // RadioButton builds a tailwindcss input[type=radio] with passed options
 func (f form) RadioButtonTag(opts tags.Options) *tags.Tag {
 	opts["type"] = "radio"
+
+	// Set the class for the radio
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.radioClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.radioClass, cl)
+	}
 
 	var label string
 	if opts["label"] != nil {
@@ -155,22 +188,25 @@ func (f form) RadioButtonTag(opts tags.Options) *tags.Tag {
 
 	ct := tags.New("input", opts)
 	ct.Checked = template.HTMLEscaper(value) == template.HTMLEscaper(checked)
-	labelOptions := tags.Options{
-		"body": strings.Join([]string{ct.String(), label}, " "),
-	}
 
 	// If the ID is provided, give it to the label's for attribute
+	var labelOptions = tags.Options{}
 	if ID != "" {
 		labelOptions["for"] = ID
 	}
 
-	tag := tags.New("label", labelOptions)
+	tag := f.Label(strings.Join([]string{ct.String(), label}, " "), labelOptions)
 	return tag
 }
 
 // SelectTag constructs a new `<select>` tag from a form.
 func (f form) SelectTag(opts tags.Options) *tags.Tag {
-	opts["class"] = f.selectClass
+	// Set the class for the select
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.selectClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.selectClass, cl)
+	}
 
 	return NewSelectTag(opts)
 }
@@ -188,6 +224,13 @@ func (f form) TextAreaTag(opts tags.Options) *tags.Tag {
 		delete(opts, "value")
 	}
 
+	// Set the class for the textarea
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.textAreaClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.textAreaClass, cl)
+	}
+
 	delete(opts, "tag_only")
 
 	return tags.New("textarea", opts)
@@ -202,6 +245,13 @@ func (f form) DateTimeTag(opts tags.Options) *tags.Tag {
 
 	if opts["format"] == nil {
 		opts["format"] = "2006-01-02T03:04"
+	}
+
+	// Set the class for the date input
+	if cl := opts["class"]; cl == nil {
+		opts["class"] = f.dateInputClass
+	} else {
+		opts["class"] = fmt.Sprintf("%v %v", f.dateInputClass, cl)
 	}
 
 	delete(opts, "tag_only")
@@ -224,6 +274,8 @@ func (f form) SubmitTag(value string, opts tags.Options) *tags.Tag {
 	return tags.New("input", opts)
 }
 
+const defaultBoxStyle = "border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 "
+
 // NewForm creates a new form from passed options, it sets POST as the
 // default method and also handles other methods as PUT by adding
 // a `_method` hidden input.
@@ -239,9 +291,17 @@ func NewForm(opts tags.Options, help hctx.Context) *form {
 	}
 
 	form := &form{
-		labelClass:  "block text-sm font-medium text-gray-700",
-		selectClass: "mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
-		inputClass:  "border border-gray-300 rounded-md py-1.5 px-3 w-full",
+		// TODO: define default classes for the missing components.
+		fieldContainerClass: "",
+		dateInputClass:      defaultBoxStyle + "text-sm font-medium text-gray-700",
+		labelClass:          "block text-sm font-medium text-gray-700",
+		inputClass:          defaultBoxStyle + "w-full",
+		selectClass:         defaultBoxStyle + "w-full py-2 mt-1 text-base sm:text-sm",
+		checkboxClass:       "",
+		radioClass:          "",
+		fileClass:           "",
+		textAreaClass:       defaultBoxStyle + "w-full",
+		errorClass:          "",
 
 		Tag: tags.New("form", opts),
 	}

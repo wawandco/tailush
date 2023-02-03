@@ -28,8 +28,8 @@ func FormFn(formOptions ...FormHelperOption) any {
 		form := NewForm(opts, help)
 
 		// Run the options on the form
-		for _, v := range formOptions {
-			v(form)
+		for _, optionFn := range formOptions {
+			optionFn(form)
 		}
 
 		help.Set(hn, form)

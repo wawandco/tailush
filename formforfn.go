@@ -27,8 +27,8 @@ func FormForFn(formOptions ...FormHelperOption) any {
 
 		// Run the options on the form
 		formf := NewFormFor(model, opts, help)
-		for _, v := range formOptions {
-			v(formf.form)
+		for _, optionFn := range formOptions {
+			optionFn(formf.form)
 		}
 
 		help.Set(hn, formf)
