@@ -28,7 +28,7 @@ import (
 
 ```
 
-#### Customizing
+### Customizing
 
 Customizing the form helpers is done by passing different instances of `tailush.Option` to the `FormFn` and `FormForFn` functions. The following example shows a set of options that can be passed to the helpers.
 
@@ -45,4 +45,20 @@ Customizing the form helpers is done by passing different instances of `tailush.
 ...
 ```
 
+#### Customizing options
+
+The following options are available for the form helpers:
+
+| Option ⚙️                           | Component ⚒️                 | Preview 🔎 |
+|------------------------------------|-----------------------------|------------|
+| `tailush.UseLabelClass()`          | `<%= f.Label() %>`          |            |
+| `tailush.UseInputClass()`          | `<%= f.InputTag() %>`       |            |
+| `tailush.UseCheckboxClass()`       | `<%= f.CheckboxTag() %>`    |            |
+| `tailush.UseRadioClass()`          | `<%= f.RadioButtonTag() %>` |            |
+| `tailush.UseFileClass()`           | `<%= f.FileTag() %>`        |            |
+| `tailush.UseTextAreaClass()`       | `<%= f.TextAreaTag() %>`    |            |
+| `tailush.UseSelectClass()`         | `<%= f.SelectTag() %>`      |            |
+| `tailush.UseDateInputClass()`      | `<%= f.DateTimeTag() %>`    |            |
+| `tailush.UseFieldContainerClass()` | Not implemented yet         |            |
+| `tailush.UseErrorClass()`          | Not implemented yet         |            |
 
