@@ -1,7 +1,6 @@
 package tailush_test
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
