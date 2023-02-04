@@ -1,6 +1,14 @@
-# Tailush
+<p align="center"><img src="https://raw.githubusercontent.com/wawandco/tailush/main/logo.png" width="300px" height="300px">
+</p>
 
-<img src="https://raw.githubusercontent.com/wawandco/tailush/main/logo.png" width="300px" height="300px">
+<p align="center"><a href="https://pkg.go.dev/github.com/wawandco/tailush">
+<img src="https://github.com/wawandco/tailush/actions/workflows/tests.yml/badge.svg"/>
+</a><a href="https://pkg.go.dev/github.com/wawandco/tailush">
+        <img src="https://pkg.go.dev/badge/github.com/wawandco/tailush.svg" alt="Go Reference"/>
+    </a>
+</p>
+
+# Tailush
 
 Tailush is a library with form plush helpers for TailwindCSS forms and inputs. Its a drop in replacement for the `form` and `form_for` helpers that ship with Buffalo and are oriented towards Bootstrap. The goal of this library is to accelerate the development of web applications by make it simpler to develop forms with TailwindCSS in plush.
 
