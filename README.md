@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/wawandco/tailush/main/logo.png" width="300px" height="300px">
 </p>
 
-<p align="center"><a href="https://pkg.go.dev/github.com/wawandco/tailush">
+<p align="center"><a href="https://github.com/wawandco/tailush/actions/workflows/tests.yml">
 <img src="https://github.com/wawandco/tailush/actions/workflows/tests.yml/badge.svg"/>
 </a><a href="https://pkg.go.dev/github.com/wawandco/tailush">
         <img src="https://pkg.go.dev/badge/github.com/wawandco/tailush.svg" alt="Go Reference"/>
