@@ -310,6 +310,11 @@ func (f formFor) CheckboxTag(field string, opts tags.Options) *tags.Tag {
 // InputTag creates an input for a field on the form Struct
 func (f formFor) InputTag(field string, opts tags.Options) *tags.Tag {
 	f.buildOptions(field, opts)
+
+	if opts["type"] == "hidden" {
+		return f.form.HiddenTag(opts)
+	}
+
 	f.addFormatTag(field, opts)
 
 	return divWrapper(opts, func(opts tags.Options) tags.Body {
