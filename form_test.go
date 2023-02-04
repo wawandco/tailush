@@ -141,7 +141,8 @@ func TestFileTag(t *testing.T) {
 		f := tailush.NewForm(tags.Options{}, newHctx())
 		f.Append(f.FileTag(tags.Options{"name": "file"}))
 
-		if !strings.Contains(string(f.HTML()), `<input name="file" type="file" />`) {
+		if !strings.Contains(string(f.HTML()), `<input class="" name="file" type="file" />`) {
+			fmt.Println(string(f.HTML()))
 			t.Fatalf("form should contain file input")
 		}
 
@@ -175,47 +176,63 @@ func TestFileTag(t *testing.T) {
 
 func TestTextArea(t *testing.T) {
 	t.Run("text area with no options", func(t *testing.T) {
+		opt := tailush.UseTextAreaClass("")
 		f := tailush.NewForm(tags.Options{}, newHctx())
+		opt(f)
+
 		f.Append(f.TextAreaTag(tags.Options{"name": "text"}))
 
-		if !strings.Contains(string(f.HTML()), `<textarea name="text"></textarea>`) {
+		if !strings.Contains(string(f.HTML()), `<textarea class="" name="text"></textarea>`) {
+			t.Log(string(f.HTML()))
 			t.Fatalf("form should contain the textarea")
 		}
 
 	})
 
 	t.Run("text area with value", func(t *testing.T) {
+		opt := tailush.UseTextAreaClass("")
 		f := tailush.NewForm(tags.Options{}, newHctx())
+		opt(f)
+
 		f.Append(f.TextAreaTag(tags.Options{"name": "text", "value": "some text"}))
 
-		if !strings.Contains(string(f.HTML()), `<textarea name="text">some text</textarea>`) {
+		if !strings.Contains(string(f.HTML()), `<textarea class="" name="text">some text</textarea>`) {
 			t.Fatalf("textarea should contain `some text`")
 		}
 	})
 
 	t.Run("text area with encoded content", func(t *testing.T) {
+		opt := tailush.UseTextAreaClass("")
 		f := tailush.NewForm(tags.Options{}, newHctx())
+		opt(f)
+
 		f.Append(f.TextAreaTag(tags.Options{"name": "text", "value": "<script>alert</script>"}))
 
-		if !strings.Contains(string(f.HTML()), `<textarea name="text">&lt;script&gt;alert&lt;/script&gt;</textarea>`) {
+		if !strings.Contains(string(f.HTML()), `<textarea class="" name="text">&lt;script&gt;alert&lt;/script&gt;</textarea>`) {
 			t.Fatalf("textarea should contain the encoded content")
 		}
 	})
 
 	t.Run("text area with tag_only", func(t *testing.T) {
+		opt := tailush.UseTextAreaClass("")
 		f := tailush.NewForm(tags.Options{}, newHctx())
+		opt(f)
+
 		f.Append(f.TextAreaTag(tags.Options{"name": "text", "tag_only": "true"}))
 
-		if !strings.Contains(string(f.HTML()), `<textarea name="text"></textarea>`) {
+		if !strings.Contains(string(f.HTML()), `<textarea class="" name="text"></textarea>`) {
 			t.Fatalf("textarea should not contain tag_only")
 		}
 	})
 
 	t.Run("text area", func(t *testing.T) {
+		opt := tailush.UseTextAreaClass("")
 		f := tailush.NewForm(tags.Options{}, newHctx())
+		opt(f)
+
 		f.Append(f.TextArea(tags.Options{"name": "text", "tag_only": "true"}))
 
-		if !strings.Contains(string(f.HTML()), `<textarea name="text"></textarea>`) {
+		if !strings.Contains(string(f.HTML()), `<textarea class="" name="text"></textarea>`) {
 			t.Fatalf("textarea should not contain tag_only")
 		}
 	})
@@ -333,7 +350,6 @@ func TestRadioButtonTag(t *testing.T) {
 		opt(f)
 
 		ct := f.RadioButtonTag(tags.Options{})
-		fmt.Println(string(ct.HTML()))
 		if !strings.Contains(string(ct.HTML()), `<input class="my-custom-class" type="radio" checked />`) {
 			t.Fatalf("form shouldn't contain mixed classes")
 		}
