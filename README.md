@@ -49,16 +49,17 @@ Customizing the form helpers is done by passing different instances of `tailush.
 
 The following options are available for the form helpers:
 
-| Option ⚙️                           | Component ⚒️                 | Preview 🔎 |
-|------------------------------------|-----------------------------|------------|
-| `tailush.UseLabelClass()`          | `<%= f.Label() %>`          |            |
-| `tailush.UseInputClass()`          | `<%= f.InputTag() %>`       |            |
-| `tailush.UseCheckboxClass()`       | `<%= f.CheckboxTag() %>`    |            |
-| `tailush.UseRadioClass()`          | `<%= f.RadioButtonTag() %>` |            |
-| `tailush.UseFileClass()`           | `<%= f.FileTag() %>`        |            |
-| `tailush.UseTextAreaClass()`       | `<%= f.TextAreaTag() %>`    |            |
-| `tailush.UseSelectClass()`         | `<%= f.SelectTag() %>`      |            |
-| `tailush.UseDateInputClass()`      | `<%= f.DateTimeTag() %>`    |            |
-| `tailush.UseFieldContainerClass()` | Not implemented yet         |            |
-| `tailush.UseErrorClass()`          | Not implemented yet         |            |
+| Option ⚙️                           | Component ⚒️                 | Used Classes                                                                                                                                         |
+|------------------------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `tailush.UseLabelClass()`          | `<%= f.Label() %>`          | block text-sm font-medium text-gray-700                                                                                                              |
+| `tailush.UseInputClass()`          | `<%= f.InputTag() %>`       | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm font-medium text-gray-700     |
+| `tailush.UseCheckboxClass()`       | `<%= f.CheckboxTag() %>`    | TBD                                                                                                                                                  |
+| `tailush.UseRadioClass()`          | `<%= f.RadioButtonTag() %>` | TBD                                                                                                                                                  |
+| `tailush.UseFileClass()`           | `<%= f.FileTag() %>`        | TBD                                                                                                                                                  |
+| `tailush.UseTextAreaClass()`       | `<%= f.TextAreaTag() %>`    | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 w-full                                |
+| `tailush.UseSelectClass()`         | `<%= f.SelectTag() %>`      | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 w-full py-2 mt-1 text-base sm:text-sm |
+| `tailush.UseDateInputClass()`      | `<%= f.DateTimeTag() %>`    | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm font-medium text-gray-700     |
+| `tailush.UseFieldContainerClass()` | Not implemented yet         | TBD                                                                                                                                                  |
+| `tailush.UseErrorClass()`          | Not implemented yet         | TBD                                                                                                                                                  |
+
 
