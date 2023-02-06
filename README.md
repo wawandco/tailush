@@ -61,6 +61,3 @@ The following options are available for the form helpers:
 | `tailush.UseDateInputClass()`      | `<%= f.DateTimeTag() %>`    | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm font-medium text-gray-700     |
 | `tailush.UseFieldContainerClass()` | Not implemented yet         | TBD                                                                                                                                                  |
 | `tailush.UseErrorClass()`          | Not implemented yet         | TBD                                                                                                                                                  |
-
-
-
