@@ -49,7 +49,7 @@ Customizing the form helpers is done by passing different instances of `tailush.
 
 The following options are available for the form helpers:
 
-| Option ⚙️                          | Component ⚒️                | Used Classes                                                                                                                                         |
+| Option ⚙️                          | Component ⚒️                | Default classes ✏️                                                                                                                                        |
 |------------------------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `tailush.UseLabelClass()`          | `<%= f.Label() %>`          | block text-sm font-medium text-gray-700                                                                                                              |
 | `tailush.UseInputClass()`          | `<%= f.InputTag() %>`       | border border-gray-300 rounded-md py-1.5 px-3 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm font-medium text-gray-700     |
